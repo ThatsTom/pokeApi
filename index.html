@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokeAPI</title>
+</head>
+<body>
+    <label for="pokemonInput">Nome ou ID do Pokémon:</label>
+    <input type="text" id="pokemonInput">
+    <button onclick="fetchPokemonInfo()">Buscar</button>
+    <br>
+    <label for="nomePokemon">Nome do Pokémon:</label>
+    <input type="text" id="nomePokemon" readonly>
+    <br>
+    <label for="pokemonAbilities">Habilidades do Pokémon:</label>
+    <ul id="habilidadesPokemon"></ul>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./pokeApi.js"></script>
+</body>
+</html>
