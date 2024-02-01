@@ -1,25 +1,25 @@
-async function fetchPokemonInfo() {
-    const idOrName = document.getElementById('pokemonInput').value;
-    try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idOrName}`);
-        
-        if (response.status === 200) {
-            const pokemonData = response.data;
-            const nomePokemon = pokemonData.name;
-            const habilidadesPokemon = pokemonData.abilities.map(ability => ability.ability.name);
-            
-            document.getElementById('nomePokemon').value = nomePokemon;
-            const listaHabilidade = document.getElementById('habilidadesPokemon');
-            listaHabilidade.innerHTML = '';
-            habilidadesPokemon.forEach(ability => {
-                const listItem = document.createElement('li');
-                listItem.textContent = ability;
-                listaHabilidade.appendChild(listItem);
-            });
-        } else {
-            console.error('Não foi possível obter os dados do Pokémon.');
-        }
-    } catch (error) {
-        console.error('Ocorreu um erro ao fazer a solicitação:', error);
-    }
-}
+document.getElementById('searchButton').addEventListener('click', function() {
+    const pokemonId = document.getElementById('pokemonId').value;
+    const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonId}/`;
+
+    fetch(pokemonUrl)
+      .then(response => response.json())
+      .then(data => {
+        const pokemonName = data.name;
+        const imageUrl = data.sprites.front_default;
+        const types = data.types.map(type => type.type.name);
+        const moves = data.moves.slice(0, 4).map(move => move.move.name);
+
+        // Atualizar informações na página
+        document.getElementById('pokemonName').textContent = pokemonName;
+        document.getElementById('pokemonImage').src = imageUrl;
+        document.getElementById('pokemonTypes').textContent = `Tipo(s): ${types.join(', ')}`;
+        document.getElementById('pokemonMoves').innerHTML = moves.map(move => `<li>${move}</li>`).join('');
+
+        // Exibir informações do Pokémon
+        document.getElementById('pokemonInfo').classList.remove('hidden');
+      })
+      .catch(error => {
+        console.error('Erro ao buscar Pokémon:', error);
+      });
+  }); 

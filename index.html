@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokeAPI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon Search</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <label for="pokemonInput">Nome ou ID do Pokémon:</label>
-    <input type="text" id="pokemonInput">
-    <button onclick="fetchPokemonInfo()">Buscar</button>
-    <br>
-    <label for="nomePokemon">Nome do Pokémon:</label>
-    <input type="text" id="nomePokemon" readonly>
-    <br>
-    <label for="pokemonAbilities">Habilidades do Pokémon:</label>
-    <ul id="habilidadesPokemon"></ul>
+<body class="bg-gray-200 p-4">
+  <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+    <h1 class="text-2xl font-bold mb-4">Pesquisar Pokémon por ID</h1>
+    <div class="flex mb-4">
+      <input id="pokemonId" type="number" min="1" class="flex-1 appearance-none border rounded py-2 px-3 mr-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="ID do Pokémon">
+      <button id="searchButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Pesquisar</button>
+    </div>
+    <div id="pokemonInfo" class="hidden">
+      <h2 id="pokemonName" class="text-xl font-bold mb-2"></h2>
+      <img id="pokemonImage" class="mb-2" alt="Imagem do Pokémon">
+      <div id="pokemonTypes" class="mb-2"></div>
+      <h3 class="font-bold mb-2">Movimentos:</h3>
+      <ul id="pokemonMoves" class="list-disc pl-4">
+      </ul>
+    </div>
+  </div>
     
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="./pokeApi.js"></script>
