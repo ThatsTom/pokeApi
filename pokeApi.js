@@ -10,13 +10,10 @@ document.getElementById('searchButton').addEventListener('click', function() {
         const types = data.types.map(type => type.type.name);
         const moves = data.moves.slice(0, 4).map(move => move.move.name);
 
-        // Atualizar informações na página
         document.getElementById('pokemonName').textContent = pokemonName;
         document.getElementById('pokemonImage').src = imageUrl;
         document.getElementById('pokemonTypes').textContent = `Tipo(s): ${types.join(', ')}`;
         document.getElementById('pokemonMoves').innerHTML = moves.map(move => `<li>${move}</li>`).join('');
-
-        // Exibir informações do Pokémon
         document.getElementById('pokemonInfo').classList.remove('hidden');
       })
       .catch(error => {
